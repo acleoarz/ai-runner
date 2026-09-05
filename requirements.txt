@@ -3,3 +3,4 @@ accelerate
 torch
 sentencepiece
 safetensors
+requests
