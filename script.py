@@ -34,6 +34,8 @@ def parse_args():
     return parser.parse_args()
 
 def main():
+    MAX_RUNTIME = int(os.getenv("MAX_RUNTIME_SECONDS", "20700"))
+    START_TIME = time.time()
     cpu_count = os.cpu_count()
     print(f"Number of CPU cores in the system: {cpu_count}")
     half_cpu_count = cpu_count // 2
@@ -160,6 +162,10 @@ def main():
     enable_thinking=False
     
     while True:
+    if time.time() - START_TIME >= MAX_RUNTIME:
+        print("\nMaximum runtime reached. Exiting...")
+        break
+
         print(f"skip_prompt = {skip_prompt}.")
         print(f"skip_special_tokens = {skip_special_tokens}.")
         print(f"enable_thinking = {enable_thinking}.")
